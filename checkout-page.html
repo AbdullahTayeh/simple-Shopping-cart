@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <style>
+/* basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1, h2, p {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .total {
+            font-weight: bold;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            text-align: center; 
+        }
+
+        .navbar a {
+            display: inline-block; 
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s; 
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar a {
+                display: block; 
+            }
+        }
+        .checkout-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px; 
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block; 
+            text-decoration: none; 
+            margin-top: 10px; 
+            text-align: center; 
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="navbar">
+        <a href="./index.html">Products</a>
+        <a href="./checkout-page.html">Cart</a>
+    </div>
+    <div class="container">
+        <h1>Checkout</h1>
+        <table id="checkout-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <p class="total">Total: <span id="total-price">$0.00</span></p>
+        <button class="checkout-btn" onclick="confirmCheckout()">Confirm Checkout</button>
+    </div>
+
+    <script>
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const tableBody = document.querySelector('#checkout-table tbody');
+        let totalPrice = 0;
+        cartItems.forEach(item => {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${item.name}</td>
+                <td>$${item.price.toFixed(2)}</td>
+            `;
+            tableBody.appendChild(newRow);
+            totalPrice += item.price;
+        });
+        document.querySelector('#total-price').textContent = `$${totalPrice.toFixed(2)}`;
+
+
+        function confirmCheckout() {
+
+            alert('Thank you for your purchase!');
+            window.location.href = 'thankyou.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Page</title>
+    <style>
+/* basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1, h2, p {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .add-to-cart-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .checkout-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block; 
+            text-decoration: none;
+            margin-top: 10px; 
+            text-align: center;
+        }
+        
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            text-align: center; 
+        }
+
+        .navbar a {
+            display: inline-block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s; 
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar a {
+                display: block; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+
+        <a href="./index.html">Products</a>
+        <a href="./checkout-page.html">Cart</a>
+    </div>
+
+    <div class="container">
+        <h1>Products</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Product Name 1</td>
+                    <td>$49.99</td>
+                    <td><button class="add-to-cart-btn" onclick="addToCart('Product Name 1', 49.99)">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td>Product Name 2</td>
+                    <td>$29.99</td>
+                    <td><button class="add-to-cart-btn" onclick="addToCart('Product Name 2', 29.99)">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td>Product Name 3</td>
+                    <td>$39.99</td>
+                    <td><button class="add-to-cart-btn" onclick="addToCart('Product Name 3', 39.99)">Add to Cart</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center;">
+            <a href="checkout-page.html" class="checkout-btn">Go to Checkout</a>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(productName, productPrice) {
+            
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cartItems.push({ name: productName, price: productPrice });
+
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+            alert(`${productName} added to cart!`);
+        }
+    </script>
+</body>
+</html>
